@@ -1,3 +1,3 @@
-app.controller('MainCtrl', function($scope) {
+onlineAdsApp.controller('MainCtrl', function($scope) {
 	
 })
