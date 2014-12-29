@@ -10,7 +10,7 @@ var onlineAdsApp = angular.module('onlineAdsApp', ['ngRoute'])
 			.when('/ads', {
 				templateUrl: 'templates/all-ads.html'
 			})
-			.otherwise({redirectTo: '#'});
+			.otherwise({redirectTo: '/ads'});
 	});
 
 
