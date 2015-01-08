@@ -45,16 +45,16 @@
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Categories</h3>
 			  </div>
-			  <div class="panel-body" ng-repeat="category in categories">
-			    {{category.name}}
+			  <div class="panel-body"> 
+			  	<select ng-options="category.id as category.name for category in categories" ng-model="selected"></select>
 			  </div>
 			</div>
 			<div class="panel panel-primary">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Towns</h3>
 			  </div>
-			  <div class="panel-body" ng-repeat="town in towns">
-			    {{town.name}}
+			  <div class="panel-body">
+			    <select id="inputTown" ng-options="town.id as town.name for town in towns" ng-model="selected"></select>
 			  </div>
 			</div>
 		</div>
