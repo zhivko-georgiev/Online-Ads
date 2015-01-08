@@ -1,13 +1,13 @@
-onlineAdsApp.controller('MainController', function ($scope, $log, adsData) {
+onlineAdsApp.controller('MainController', function ($scope, $log, adsData, categoriesData, townsData) {
 	adsData.getAds(function(resp) {
 		$scope.data = resp;
 	});
 
-	adsData.getTowns(function(resp) {
+	townsData.getTowns(function(resp) {
 		$scope.towns = resp;
 	});
 
-	adsData.getCategories(function(resp) {
+	categoriesData.getCategories(function(resp) {
 		$scope.categories = resp;
 	});
 })
