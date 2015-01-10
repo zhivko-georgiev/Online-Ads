@@ -3,13 +3,12 @@
 onlineAdsApp.factory('messaging', function () {
 
     function messageSuccess(text) {
-            noty({
-                text: text, 
-                layout: 'topCenter',
-                timeout: 3000}
-            );
-            
-        }
+        noty({
+            text: text, 
+            layout: 'topCenter',
+            timeout: 3000}
+        );
+    }
         
     function messageError(text) {
         noty({
