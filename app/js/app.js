@@ -12,8 +12,7 @@ var onlineAdsApp = angular.module('onlineAdsApp', ['ngRoute', 'ngResource'])
 				controller: 'RegisterController'
 			})
 			.when('/ads', {
-				templateUrl: 'templates/homeView.html',
-				controller: 'AdsController'
+				templateUrl: 'templates/homeView.html'
 			})
 			.otherwise({redirectTo: '/ads'});
 	});

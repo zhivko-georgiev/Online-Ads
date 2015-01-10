@@ -1,4 +1,4 @@
-onlineAdsApp.factory('userData', ['$resource', '$location', 'BaseServiceUrl', 'authentication', function($resource, $location,BaseServiceUrl, authentication) {
+onlineAdsApp.factory('userData', ['$resource', '$location', 'BaseServiceUrl', 'authentication', 'messaging', function($resource, $location,BaseServiceUrl, authentication, messaging) {
 	function registerUser(user) {
 		return $resource(BaseServiceUrl + 'user/register')
 			.save(user)
@@ -7,7 +7,9 @@ onlineAdsApp.factory('userData', ['$resource', '$location', 'BaseServiceUrl', 'a
 				authentication.saveUser(data);
 				authentication.getHeaders();
 				$location.path('/ads');
-			});                                               
+			}, function(error) {
+				messaging.messageError('UnSuccessful Register!');
+			});
 	}
 
 	function loginUser(user) {
@@ -16,8 +18,11 @@ onlineAdsApp.factory('userData', ['$resource', '$location', 'BaseServiceUrl', 'a
 			.$promise
 			.then(function (data) {
 				authentication.saveUser(data);
-				authentication.getHeaders()
+				authentication.getHeaders();
+				messaging.messageSuccess('Login Successful!');
 				$location.path('/ads');
+			}, function(error) {
+				messaging.messageError('Invalid User or Password!');
 			});
 	}
 
