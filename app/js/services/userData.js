@@ -1,7 +1,11 @@
-onlineAdsApp.factory('userData', ['$resource', 'BaseServiceUrl', function($resource, BaseServiceUrl) {
+onlineAdsApp.factory('userData', ['$resource', 'BaseServiceUrl', 'authentication', function($resource, BaseServiceUrl, authentication) {
 	function registerUser(user) {
 		return $resource(BaseServiceUrl + 'user/register')
-			.save(user);
+			.save(user)
+			.$promise
+			.then(function (data) {
+				authentication.saveUser(angular.toJson(data));
+			});                                                                                                                                                                                 
 	}
 
 	function loginUser(user) {
