@@ -1,4 +1,4 @@
-onlineAdsApp.factory('userData', ['$resource', 'BaseServiceUrl', 'authentication', function($resource, BaseServiceUrl, authentication) {
+onlineAdsApp.factory('userData', ['$resource', '$location', 'BaseServiceUrl', 'authentication', function($resource, $location,BaseServiceUrl, authentication) {
 	function registerUser(user) {
 		return $resource(BaseServiceUrl + 'user/register')
 			.save(user)
@@ -6,6 +6,7 @@ onlineAdsApp.factory('userData', ['$resource', 'BaseServiceUrl', 'authentication
 			.then(function (data) {
 				authentication.saveUser(data);
 				authentication.getHeaders();
+				$location.path('/ads');
 			});                                               
 	}
 
@@ -15,7 +16,8 @@ onlineAdsApp.factory('userData', ['$resource', 'BaseServiceUrl', 'authentication
 			.$promise
 			.then(function (data) {
 				authentication.saveUser(data);
-				authentication.getHeaders();
+				authentication.getHeaders()
+				$location.path('/ads');
 			});
 	}
 

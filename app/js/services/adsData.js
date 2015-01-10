@@ -1,8 +1,6 @@
 onlineAdsApp.factory('adsData', ['$resource', 'BaseServiceUrl', function($resource, BaseServiceUrl) {
 
-	var resource = $resource(BaseServiceUrl + 'ads:adId', {adId: '@id'}, { update: {method: 'PUT'}
-
-	})
+	var resource = $resource(BaseServiceUrl + 'ads:adId', {adId: '@id'}, { update: {method: 'PUT'} });
 
 	function getPublicAds() {
 		return resource.get();

@@ -1,7 +1,4 @@
-onlineAdsApp.controller('RegisterController', function ($scope, $log, townsData, userData) {
-	townsData.getTowns(function(resp) {
-		$scope.towns = resp;
-	});
+onlineAdsApp.controller('RegisterController', function ($scope, $log, userData) {
 
 	$scope.register = function (user) {
 		userData.register(user);

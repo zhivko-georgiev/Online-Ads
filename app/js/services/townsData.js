@@ -1,18 +1,12 @@
-onlineAdsApp.factory('townsData', function ($http, $log) {
-	function getAllTowns(success) {
-		$http({
-			method: 'GET',
-			url: 'http://softuni-ads.azurewebsites.net/api/towns'
-		})
-		.success(function (data, status, headers, config) {
-			success(data, status, headers(), config);
-		})
-		.error(function (data, status, headers, config) {
-			$log.warn(data);
-		});
+onlineAdsApp.factory('townsData', ['$resource', 'BaseServiceUrl', function($resource, BaseServiceUrl) {
+
+	var resource = $resource(BaseServiceUrl + 'towns');
+
+	function getAllTowns() {
+		return resource.query();
 	}
 
 	return {
 		getTowns: getAllTowns
 	}
-})
+}])
