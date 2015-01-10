@@ -1,7 +1,10 @@
 onlineAdsApp.controller('MainController', function ($scope, $log, adsData, categoriesData, townsData) {
-	adsData.getAds(function(resp) {
-		$scope.data = resp;
-	});
+	
+	adsData.getPublicAds()
+		.$promise
+		.then(function (data) {
+			$scope.data = data;
+		})
 
 	townsData.getTowns(function(resp) {
 		$scope.towns = resp;
