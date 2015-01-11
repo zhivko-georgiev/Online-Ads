@@ -8,7 +8,8 @@ onlineAdsApp.factory('userData', ['$resource', '$location', 'BaseServiceUrl', 'a
 				authentication.getHeaders();
 				$location.path('/ads');
 			}, function(error) {
-				messaging.messageError('UnSuccessful Register!');
+
+				messaging.messageError('' + error.data.message);
 			});
 	}
 
