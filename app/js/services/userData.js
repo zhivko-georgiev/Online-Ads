@@ -1,30 +1,33 @@
-onlineAdsApp.factory('userData', ['$resource', '$location', 'BaseServiceUrl', 'authentication', 'messaging', function($resource, $location,BaseServiceUrl, authentication, messaging) {
+onlineAdsApp.factory('userData', ['$resource', 'BaseServiceUrl', 'authentication', function($resource, BaseServiceUrl, authentication) {
+	
 	function registerUser(user) {
-		return $resource(BaseServiceUrl + 'user/register')
-			.save(user)
-			.$promise
-			.then(function (data) {
-				authentication.saveUser(data);
-				authentication.getHeaders();
-				$location.path('/ads');
-			}, function(error) {
 
-				messaging.messageError('' + error.data.message);
-			});
+		var resource = $resource(BaseServiceUrl + 'user/login ')
+			.save(user);
+
+			resource
+				.$promise
+				.then(function (data) {
+					authentication.saveUser(data);
+					authentication.getHeaders();
+				});
+		return resource;
 	}
 
 	function loginUser(user) {
-		return $resource(BaseServiceUrl + 'user/login ')
-			.save(user)
-			.$promise
-			.then(function (data) {
-				authentication.saveUser(data);
-				authentication.getHeaders();
-				messaging.messageSuccess('Login Successful!');
-				$location.path('/ads');
-			}, function(error) {
-				messaging.messageError('Invalid User or Password!');
-			});
+		
+		var resource = $resource(BaseServiceUrl + 'user/login ')
+			.save(user);
+
+			resource
+				.$promise
+				.then(function (data) {
+					authentication.saveUser(data);
+					authentication.getHeaders();
+				});
+
+		return resource;
+			
 	}
 
 	function logoutUser() {
